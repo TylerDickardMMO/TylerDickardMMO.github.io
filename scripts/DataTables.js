@@ -121,4 +121,15 @@ $(document).ready( function () {
                     that._editRowData();
                 });
   });
+	$('#activeAddbutton').on('click', function () {
+    var that = $( '#activeRefreshesTable' )[0].altEditor;
+    that._openAddModal();
+    $('#altEditor-add-form-' + that.random_id)
+                .off('submit')
+                .on('submit', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    that._addRowData();
+                });
+  });
 });
