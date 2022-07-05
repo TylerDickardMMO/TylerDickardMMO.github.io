@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<!-- My Stylesheet-->
+	<link rel = "stylesheet" href="styles/styles.css">
+	<!-- jQuery addon-->
+	<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+	<!-- Table initialization and features file-->
+	<script type="text/javascript" src="scripts/DataTables.js"></script>
+	<!-- stylesheet and jQuery addon for DataTables -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+	<script src="https://code.jquery.com/jquery-migrate-3.3.0.js" ></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" ></script>
+	<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js" ></script>
+	<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.js" ></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" ></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.js" ></script>
+	<script src ="https://luca-vercelli.github.io/DataTable-AltEditor/src/dataTables.altEditor.free.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<title>Build Log Manager</title>
+	</head>
+	<body>
+		<div id="navbar">
+			<a href="#archivedRefreshes" id = "archiveBtn">Archived Refreshes</a>
+			<a href="#deployedRefreshes" id = "deployedBtn">Deployed Refreshes</a>
+			<a href="#activeRefreshes" id = "activeBtn">Active Refreshes</a>
+		</div>
+		<section id="activeRefreshes">
+			<button class="btn btn-primary" id="activeAddbutton" title="Add" type="button">Add</button>
+			<button id="activeEditButton" type="button" disabled class="btn btn-primary">Edit</button>
+			<button id="activeDeleteButton" type="button" disabled class="btn btn-primary">Delete</button>
+			<table id="activeRefreshesTable" class="dataTable">
+				<thead>
+					<tr>
+						<th>Ticket Number</th>
+						<th>CSA</th>
+						<th>Date Accepted</th>
+						<th>End User</th>
+						<th>User ID</th>
+						<th>Stage</th>
+						<th>User Email</th>
+						<th>CSA Email</th>
+						<th>Old Asset Tag</th>
+						<th>New Asset Tag</th>
+						<th>Old Device Name</th>
+						<th>New Device Name</th>
+						<th>Manager Name</th>
+						<th>Manager Email</th>
+						<th>Mail Zone</th>
+					</tr>
+				</thead>
+			</table>
+		</section>
+		<section id="deployedRefreshes">
+		</section>
+		<section id="archivedRefreshes">
+		</section>
+	</body>
+</html>
