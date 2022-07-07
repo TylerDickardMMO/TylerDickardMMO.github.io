@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<title>New Return Label</title>
+	<style>
+		html {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		table {
+			border: 2px solid black;
+			font-size: 25px;
+		}
+		th {
+			font-weight: normal;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.0.0.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/barcodes/JsBarcode.code128.min.js"></script>
+	<body>
+		<table cellspacing=0>
+			<tbody>
+				<tr>
+					<td colspan = 2 style="justify-content: center; font-weight: bold; text-align: center; border-bottom: 4px solid black">Medical Mutual of Ohio</td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">To:</th>
+					<td><input type="text" id="toText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">Mail Zone:</th> 
+					<td><input type="text" id="mzText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th>Asset Number:</th>
+					<td id="fillInOldAssetTag"></td>
+				</tr>
+				<tr>
+					<th>Serial Number:</th>
+					<td id="fillInOldModel Number"></td>
+				</tr>
+				<tr>
+					<th>Device Model:</th>
+					<td><input type="text" id="dmText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<th>From:</th>
+					<td id="fillInCSA"></td>
+				</tr>
+				<tr>
+					<th>Mail Zone:</th>
+					<td id="fillInMailZone"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<td style="color: red;" colspan=2 id="dateSent"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<td id="barcode" colspan=2></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<table cellspacing=0>
+			<tbody>
+				<tr>
+					<td colspan = 2 style="justify-content: center; font-weight: bold; text-align: center; border-bottom: 4px solid black">Medical Mutual of Ohio</td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">To:</th>
+					<td><input type="text" id="toText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th style="height: 15%;">Mail Zone:</th> 
+					<td><input type="text" id="mzText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<th>Asset Number:</th>
+					<td id="fillInOldAssetTag"></td>
+				</tr>
+				<tr>
+					<th>Serial Number:</th>
+					<td id="fillInOldModel Number"></td>
+				</tr>
+				<tr>
+					<th>Device Model:</th>
+					<td><input type="text" id="dmText" style="height: 20%;"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<th>From:</th>
+					<td id="fillInCSA"></td>
+				</tr>
+				<tr>
+					<th>Mail Zone:</th>
+					<td id="fillInMailZone"></td>
+				</tr>
+				<tr>
+					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
+				</tr>
+				<tr>
+					<td id="barcode" colspan=2></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<script>
+		window.onload = function() {
+			var today =new Date();
+			var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+			var dateWipe = (today.getMonth()+1)+'-'+(today.getDate()+5)+'-'+today.getFullYear();
+			
+				document.getElementById("dateSent").innerHTML = "Date Sent: " + date +" Wipe Eligible: "+dateWipe;
+		}
+	</script>
+</html>

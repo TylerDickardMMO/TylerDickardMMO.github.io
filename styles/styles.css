@@ -47,11 +47,11 @@ td {
   padding: 30px;
 }
 /*DataTables Styling*/
-td.details-control {
+td.dt-control {
     background: url('https://cekfakta.com/vendor/datatables/datatables/examples/resources/details_open.png') no-repeat center center;
     cursor: pointer;
 }
-tr.shown td.details-control {
+tr.shown td.dt-control{
     background: url('https://cekfakta.com/vendor/datatables/datatables/examples/resources/details_close.png') no-repeat center center;
 }
 table.dataTable {

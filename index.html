@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<!--
+Future Plans:
+1. Restyle the NavBar, make it horizontal
+2. Implement AD or a login system
+3. Create .pdf creation
+4. Document code
+5. Figure out a solution to getting software inventories automatically to avoid the SQL Database due to time constraints
+6. If we do go with SQL temporarily, create a query to get the software inventories
+7. Do more styling overall to improve the feel of the webapp to make it more modern/industrial
+-->
 <html lang = "en">
 	<!-- My Stylesheet-->
 	<link rel = "stylesheet" href="styles/styles.css">
@@ -6,13 +16,15 @@
 	<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 	<!-- Table initialization and features file-->
 	<script type="text/javascript" src="scripts/DataTables.js"></script>
-	<!-- stylesheet and jQuery addon for DataTables -->
+	<!-- stylesheets for data tables and its plugins -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.css" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.css" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+	<!--Scripts for data tables and its plugins-->
+	<script src="https://code.jquery.com/jquery-3.0.0.js" ></script>
 	<script src="https://code.jquery.com/jquery-migrate-3.3.0.js" ></script>
 	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" ></script>
 	<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js" ></script>
@@ -20,24 +32,62 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" ></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.js" ></script>
 	<script src ="https://luca-vercelli.github.io/DataTable-AltEditor/src/dataTables.altEditor.free.js"></script>
-
+	<!--Setting the form as a viewport-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<head>
+		<!--Title of the webpage-->
 		<title>Build Log Manager</title>
 	</head>
+	<!--Main contents of a page-->
 	<body>
 		<div id="navbar">
-			<a href="#archivedRefreshes" id = "archiveBtn">Archived Refreshes</a>
+			<!--The buttons for the nav bar-->
 			<a href="#deployedRefreshes" id = "deployedBtn">Deployed Refreshes</a>
 			<a href="#activeRefreshes" id = "activeBtn">Active Refreshes</a>
 		</div>
+		<!--The section for the active refreshes-->
 		<section id="activeRefreshes">
+			<!--The Add, Edit, and Delete buttons-->
 			<button class="btn btn-primary" id="activeAddbutton" title="Add" type="button">Add</button>
 			<button id="activeEditButton" type="button" disabled class="btn btn-primary">Edit</button>
 			<button id="activeDeleteButton" type="button" disabled class="btn btn-primary">Delete</button>
-			<table id="activeRefreshesTable" class="dataTable">
+			<!--The table for active refreshes-->
+			<table id="activeRefreshesTable" class="dataTable table table-striped">
 				<thead>
 					<tr>
+						<!--Table Headders-->
+						<th>Ticket Number</th>
+						<th>CSA</th>
+						<th>Date Accepted</th>
+						<th>End User</th>
+						<th>User ID</th>
+						<th>Stage</th>
+						<th>User Email</th>
+						<th>CSA Email</th>
+						<th>Old Asset Tag</th>
+						<th>New Asset Tag</th>
+						<th>Old Device Name</th>
+						<th>New Device Name</th>
+						<th>Manager Name</th>
+						<th>Manager Email</th>
+						<th>Mail Zone</th>
+						<th>Label</th>
+						<th>New Return Label</th>
+					</tr>
+				</thead>
+			</table>
+		</section>
+		<!--Section for deployed refreshes-->
+		<section id="deployedRefreshes">
+			<!--The Add, Edit, and Delete buttons-->
+			<button class="btn btn-primary" id="deployedAddButton" title="Add" type="button">Add</button>
+			<button id="deployedEditButton" type="button" disabled class="btn btn-primary">Edit</button>
+			<button id="deployedDeleteButton" type="button" disabled class="btn btn-primary">Delete</button>
+			<!--The table for the deployed refreshes-->
+			<table id="deployedRefreshesTable" class="dataTable table table-striped">
+				<thead>
+					<tr>
+						<!--Table Headders-->
 						<th>Ticket Number</th>
 						<th>CSA</th>
 						<th>Date Accepted</th>
@@ -56,10 +106,6 @@
 					</tr>
 				</thead>
 			</table>
-		</section>
-		<section id="deployedRefreshes">
-		</section>
-		<section id="archivedRefreshes">
 		</section>
 	</body>
 </html>
