@@ -114,14 +114,14 @@ $(document).ready( function () {
 				"className": 'select',
 				data: null,
 				render: function (data, type, row, meta) {
-				  return '<a class="activeLabelButton">View Label</a>';
+				  return '<a class="activeLabelButton" id="labelButton">View Label</a>';
 				}
 			},
 			{
 				"className": 'select',
 				data: null,
 				render: function (data, type, row, meta) {
-				  return '<a class="activeReturnLabelButton">View New Return Label</a>';
+				  return '<a class="activeReturnLabelButton" id="newButton">View New Return Label</a>';
 				}
 			}
 		],
@@ -149,11 +149,17 @@ $(document).ready( function () {
             tr.removeClass('selected');
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
+			$('td.select a').each(function () {
+				$(this).css("color","#337ab7");
+			});
         } else {
             activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
+			$('tr.selected td a').each(function () {
+				$(this).css("color","white");
+			});
         }
     });
 	//add button

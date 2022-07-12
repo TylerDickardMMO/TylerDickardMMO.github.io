@@ -61,3 +61,7 @@ table.dataTable {
 th{
 	width: 100%;
 }
+
+.activeLabelButton {
+	color: default;
+}
