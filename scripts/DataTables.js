@@ -47,8 +47,8 @@ $(document).ready( function () {
 			},
 			{ 
 				"className": 'select',
-				type: "date",
-				"data": "dateAccepted"
+				"data": "dateAccepted",
+				datetimepicker: { timepicker: false, format : "m/d/Y"}
 			},
 			{ 
 				"className": 'select',
@@ -137,7 +137,7 @@ $(document).ready( function () {
 		scrollX: true,
 		//this singular line has cost me 5 hours of debugging, thank you random german person for writing a comment on stack
 		//overflow 2 years ago which fixes the issue
-		select: "multiple"
+		select: "single"
 	});
 	//When a row is selected it will highlight it
 	$('#activeRefreshesTable tbody').on('click', 'td.select', function () {
@@ -149,17 +149,11 @@ $(document).ready( function () {
             tr.removeClass('selected');
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
-			$('td.select a').each(function () {
-				$(this).css("color","#337ab7");
-			});
         } else {
             activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
-			$('tr.selected td a').each(function () {
-				$(this).css("color","white");
-			});
         }
     });
 	//add button

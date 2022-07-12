@@ -61,7 +61,9 @@ table.dataTable {
 th{
 	width: 100%;
 }
-
-.activeLabelButton {
-	color: default;
+tr.selected td a {
+	color: white;
+}
+tr td a {
+	color: #337ab7;
 }
