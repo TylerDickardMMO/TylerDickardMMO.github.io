@@ -1,7 +1,5 @@
-//TO DO for the next time I look at this
-//5- generate sample files for demo
-//6- link those files in a child row
 
+var stageOptions = ["Stage 1 - Imaging", "Stage 2 - Running USMT", "Stage 3 - Software Inventory", "Stage 4 - Installing Software from SCCM", "Stage 5 - Manual Install", "Stage 6 - Testing", "Stage 7 - User Testing", "Stage 8 - Deployed", "Stage 11 - Canceled" ];
 function sessionDataLabel(d) {
 	window.localStorage.setItem('date', d.dateAccepted);
 	window.localStorage.setItem('newAsstTag', d.newAsstTag);
@@ -25,7 +23,7 @@ $(document).ready( function () {
 	//Creating the dataSet that will be displayed on the table
 	var activeDataSet = [
 		{ticketNumber:12345, csa:"Tyler Dickard", dateAccepted:"6/20/2022", endUser:"Tyler Dickard", userID:"td3220", stage:"Stage 1 - Imaging", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"Tyler.Dickard@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041",},
-		{ticketNumber:122245, csa:"James Hawk", dateAccepted:"7/1/2022", endUser:"Tyler Dickard", userID:"td3220", stage:"Stage 3 - Software Comparison", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"James.Hawk@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041"},
+		{ticketNumber:122245, csa:"James Hawk", dateAccepted:"7/1/2022", endUser:"Tyler Dickard", userID:"td3220", stage: "Stage 3 - Software Inventory", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"James.Hawk@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041"},
 		
 	];
 	
@@ -62,17 +60,8 @@ $(document).ready( function () {
 				"className": 'select',
 				"data": "stage",
 				type: "select",
-				options:  [
-					"Stage 1 - Imaging",
-					"Stage 2 - Running USMT",
-					"Stage 3 - Software Inventory",
-					"Stage 1 - Imaging",
-					"Stage 1 - Imaging",
-					"Stage 1 - Imaging",
-					"Stage 1 - Imaging",
-					"Stage 8 - Deployed",
-					"Stage 11 - Canceled",
-				]
+				select2 : { width: "100%"},
+				options: stageOptions,
 			},
 			{
 				"className": 'select',
@@ -115,14 +104,16 @@ $(document).ready( function () {
 				data: null,
 				render: function (data, type, row, meta) {
 				  return '<a class="activeLabelButton" id="labelButton">View Label</a>';
-				}
+				},
+				readonly: true
 			},
 			{
 				"className": 'select',
 				data: null,
 				render: function (data, type, row, meta) {
 				  return '<a class="activeReturnLabelButton" id="newButton">View New Return Label</a>';
-				}
+				},
+				readonly: true
 			}
 		],
 		//making sure the tickets are inorder
