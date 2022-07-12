@@ -1,4 +1,3 @@
-
 var stageOptions = ["Stage 1 - Imaging", "Stage 2 - Running USMT", "Stage 3 - Software Inventory", "Stage 4 - Installing Software from SCCM", "Stage 5 - Manual Install", "Stage 6 - Testing", "Stage 7 - User Testing", "Stage 8 - Deployed", "Stage 11 - Canceled" ];
 function sessionDataLabel(d) {
 	window.localStorage.setItem('date', d.dateAccepted);
@@ -28,7 +27,7 @@ $(document).ready( function () {
 	];
 	
 	var deployedDataSet = [
-		{ticketNumber:10000, csa:"Tyler Dickard", dateAccepted:"2021-5-20", endUser:"Tyler Dickard", userID:"td3220", stage:"Stage 8 - Deployed", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"Tyler.Dickard@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041"},
+		{ticketNumber:10000, csa:"Tyler Dickard", dateAccepted:"5/20/2021", endUser:"Tyler Dickard", userID:"td3220", stage:"Stage 8 - Deployed", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"Tyler.Dickard@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041"},
 	];
     var activeTable = $('#activeRefreshesTable').DataTable( {
 		//load the data
@@ -210,8 +209,8 @@ $(document).ready( function () {
 			},
 			{ 
 				"className": 'select',
-				type: "date",
-				"data": "dateAccepted"
+				"data": "dateAccepted",
+				datetimepicker: { timepicker: false, format : "m/d/Y"}
 			},
 			{ 
 				"className": 'select',
@@ -225,17 +224,8 @@ $(document).ready( function () {
 				"className": 'select',
 				"data": "stage",
 				type: "select",
-				options:  [
-					"Stage 1 - Imaging",
-					"Stage 2 - Running USMT",
-					"Stage 3 - Software Inventory",
-					"Stage 1 - Imaging",
-					"Stage 1 - Imaging",
-					"Stage 1 - Imaging",
-					"Stage 1 - Imaging",
-					"Stage 8 - Deployed",
-					"Stage 11 - Canceled",
-				]
+				select2 : { width: "100%"},
+				options: stageOptions
 			},
 			{
 				"className": 'select',
@@ -272,6 +262,22 @@ $(document).ready( function () {
 			{
 				"className": 'select',
 				"data": "mailZone"
+			},
+			{
+				"className": 'select',
+				data: null,
+				render: function (data, type, row, meta) {
+				  return '<a class="deployedLabelButton" id="labelButton">View Label</a>';
+				},
+				readonly: true
+			},
+			{
+				"className": 'select',
+				data: null,
+				render: function (data, type, row, meta) {
+				  return '<a class="deployedReturnLabelButton" id="newButton">View New Return Label</a>';
+				},
+				readonly: true
 			}
 		],
 		//making sure the tickets are inorder
@@ -298,14 +304,14 @@ $(document).ready( function () {
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
         } else {
-            deployedTable.$('tr.selected').removeClass('selected');
+            activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
         }
     });
 	//add button
-	$('#deployedAddButton').on('click', function () {
+	$('#deployedAddbutton').on('click', function () {
 		var that = $( '#deployedRefreshesTable' )[0].altEditor;
 		that._openAddModal();
 		$('#altEditor-add-form-' + that.random_id)
@@ -340,5 +346,15 @@ $(document).ready( function () {
 				e.stopPropagation();
 				that._editRowData();
 			});
+	});
+	//Label link
+	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedLabelButton", 'tr', function (x) {
+		sessionDataLabel(deployedTable.row('.selected').data());
+		window.open("HTMLTemplates/label.html", "_blank");
+	});
+	//New Return Label Link
+	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedReturnLabelButton", 'tr', function (x) {
+		sessionDataReturnLabel(deployedTable.row('.selected').data());
+		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
 	});
 });
