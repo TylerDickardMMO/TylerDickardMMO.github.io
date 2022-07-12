@@ -8,9 +8,13 @@
 		table {
 			border: 2px solid black;
 			font-size: 25px;
+			max-width 15%
 		}
 		th {
 			font-weight: normal;
+		}
+		img {
+			width:50%;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.0.0.js" ></script>
@@ -31,11 +35,11 @@
 				</tr>
 				<tr>
 					<th>Asset Number:</th>
-					<td id="fillInOldAssetTag"></td>
+					<td id="fillInOldAssetTag0"></td>
 				</tr>
 				<tr>
 					<th>Serial Number:</th>
-					<td id="fillInOldModel Number"></td>
+					<td id="fillInOldModelNumber0"></td>
 				</tr>
 				<tr>
 					<th>Device Model:</th>
@@ -46,11 +50,11 @@
 				</tr>
 				<tr>
 					<th>From:</th>
-					<td id="fillInCSA"></td>
+					<td id="fillInCSA0"></td>
 				</tr>
 				<tr>
 					<th>Mail Zone:</th>
-					<td id="fillInMailZone"></td>
+					<td id="fillInMailZone0"></td>
 				</tr>
 				<tr>
 					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
@@ -62,7 +66,7 @@
 					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
 				</tr>
 				<tr>
-					<td id="barcode" colspan=2></td>
+					<td colspan=2><img id="barcode0"/></td>
 				</tr>
 			</tbody>
 		</table>
@@ -83,11 +87,11 @@
 				</tr>
 				<tr>
 					<th>Asset Number:</th>
-					<td id="fillInOldAssetTag"></td>
+					<td id="fillInOldAssetTag1"></td>
 				</tr>
 				<tr>
 					<th>Serial Number:</th>
-					<td id="fillInOldModel Number"></td>
+					<td id="fillInOldModelNumber1"></td>
 				</tr>
 				<tr>
 					<th>Device Model:</th>
@@ -98,17 +102,17 @@
 				</tr>
 				<tr>
 					<th>From:</th>
-					<td id="fillInCSA"></td>
+					<td id="fillInCSA1"></td>
 				</tr>
 				<tr>
 					<th>Mail Zone:</th>
-					<td id="fillInMailZone"></td>
+					<td id="fillInMailZone1"></td>
 				</tr>
 				<tr>
 					<td colspan=2 style=" border-bottom: 4px solid black;"></td>
 				</tr>
 				<tr>
-					<td id="barcode" colspan=2></td>
+					<td colspan=2><img id="barcode1"/></td>
 				</tr>
 			</tbody>
 		</table>
@@ -118,8 +122,18 @@
 			var today =new Date();
 			var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
 			var dateWipe = (today.getMonth()+1)+'-'+(today.getDate()+5)+'-'+today.getFullYear();
+			document.getElementById("dateSent").innerHTML = "Date Sent: " + date +" Wipe Eligible: "+dateWipe;
 			
-				document.getElementById("dateSent").innerHTML = "Date Sent: " + date +" Wipe Eligible: "+dateWipe;
+			
+			var assetOld = window.localStorage.getItem("oldAsstTag");
+			for(let x= 0; x<2; x++) {
+				document.getElementById("fillInOldAssetTag"+x).innerHTML = assetOld;
+				JsBarcode("#barcode"+x, assetOld);
+				document.getElementById("fillInOldModelNumber"+x).innerHTML = window.localStorage.getItem("oldDeviceName");
+				document.getElementById("fillInMailZone"+x).innerHTML = window.localStorage.getItem("mail");
+				document.getElementById("fillInCSA"+x).innerHTML = window.localStorage.getItem("csa");
+			}
+			window.localStorage.clear();
 		}
 	</script>
 </html>

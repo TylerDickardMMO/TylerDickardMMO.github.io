@@ -15,7 +15,12 @@ function sessionDataLabel(d) {
 	window.localStorage.setItem('email', d.userEmail);
 	window.localStorage.setItem('ticketNumber', d.ticketNumber);
 }
-
+function sessionDataReturnLabel(d) {
+	window.localStorage.setItem('oldAsstTag', d.oldAsstTag);
+	window.localStorage.setItem('oldDeviceName', d.oldModelNumber);
+	window.localStorage.setItem('csa', d.csa);
+	window.localStorage.setItem('mail',d.mailZone);
+}
 $(document).ready( function () {
 	//Creating the dataSet that will be displayed on the table
 	var activeDataSet = [
@@ -188,11 +193,16 @@ $(document).ready( function () {
 				that._editRowData();
 			});
 	});
-	 //Label link
-	  $(document).on('click', "[id^='activeRefreshesTable'] .activeLabelButton", 'tr', function (x) {
+	//Label link
+	$(document).on('click', "[id^='activeRefreshesTable'] .activeLabelButton", 'tr', function (x) {
 		sessionDataLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/label.html", "_blank");
-	  });
+	});
+	//New Return Label Link
+	$(document).on('click', "[id^='activeRefreshesTable'] .activeReturnLabelButton", 'tr', function (x) {
+		sessionDataReturnLabel(activeTable.row('.selected').data());
+		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
+	});
 	//Deployed Table Initialization
 	var deployedTable = $('#deployedRefreshesTable').DataTable( {
 		//load the data
