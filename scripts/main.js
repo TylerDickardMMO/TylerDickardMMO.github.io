@@ -1,4 +1,21 @@
+//Author: Tyler Dickard
+//File Name: main.js
+//Description: This file has all of my JavaScript and jQuery code for the DataTables and the buttons
+//Date: 7/13/2022
+//
+//Name: stageOptions
+//Purpose: this variable will store all of the possible values for the dropdown menu in the editor
+//Variable Type: array of strings
+//
 var stageOptions = ["Stage 1 - Imaging", "Stage 2 - Running USMT", "Stage 3 - Software Inventory", "Stage 4 - Installing Software from SCCM", "Stage 5 - Manual Install", "Stage 6 - Testing", "Stage 7 - User Testing", "Stage 8 - Deployed", "Stage 11 - Canceled" ];
+//
+//Function Name: sessionDataLabel
+//Parameters: an object named d
+//Returns: N/A
+//Description: When this function is called it will use the data object d to set the local storage objects of date, new asset tag, the end users name,
+//the end user's id, the new model number, the old model number, the old asset tag, the stage, the csa agent assigned, and the ticket number for the 
+//label maker to use when creating the label.
+//
 function sessionDataLabel(d) {
 	window.localStorage.setItem('date', d.dateAccepted);
 	window.localStorage.setItem('newAsstTag', d.newAsstTag);
@@ -12,27 +29,51 @@ function sessionDataLabel(d) {
 	window.localStorage.setItem('email', d.userEmail);
 	window.localStorage.setItem('ticketNumber', d.ticketNumber);
 }
+//
+//Function Name: sessionDataReturnLabel
+//Parameters: an object named d
+//Returns: N/A
+//Description: When this function is called it will set the local storage of the browser to house the old asset tag, the old device name, the csa agent, and the mailzone
+//using the data object d
+//
 function sessionDataReturnLabel(d) {
 	window.localStorage.setItem('oldAsstTag', d.oldAsstTag);
 	window.localStorage.setItem('oldDeviceName', d.oldModelNumber);
 	window.localStorage.setItem('csa', d.csa);
 	window.localStorage.setItem('mail',d.mailZone);
 }
+//
+//Function Name: $(document).ready( function ())
+//Parameters: N/A
+//Returns: N/A
+//Description: This function will initialize all of the data and resources for the DataTables and its functions
+//
 $(document).ready( function () {
-	//Creating the dataSet that will be displayed on the table
+	//
+	//This is the temporary dataset for the active refresh table
+	//
 	var activeDataSet = [
 		{ticketNumber:12345, csa:"Tyler Dickard", dateAccepted:"6/20/2022", endUser:"Tyler Dickard", userID:"td3220", stage:"Stage 1 - Imaging", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"Tyler.Dickard@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041",},
 		{ticketNumber:122245, csa:"James Hawk", dateAccepted:"7/1/2022", endUser:"Tyler Dickard", userID:"td3220", stage: "Stage 3 - Software Inventory", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"James.Hawk@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041"},
 		
 	];
-	
+	//
+	//This is the temporary dataset for the deployed refresh table
+	//
 	var deployedDataSet = [
 		{ticketNumber:10000, csa:"Tyler Dickard", dateAccepted:"5/20/2021", endUser:"Tyler Dickard", userID:"td3220", stage:"Stage 8 - Deployed", userEmail:"Tyler.Dickard@medmutual.com", csaEmail:"Tyler.Dickard@medmutual.com", oldAsstTag:"10474097", newAsstTag:"10474097", oldModelNumber:"L428M3J3", newModelNumber:"L428M3J3", managerName:"Clinton Hayman", managerEmail:"Clinton.Hayman@medmutual.com", mailZone:"04-4P-4041"},
 	];
+	//
+	//Initialization for the active refresh table's DataTable
+	//
     var activeTable = $('#activeRefreshesTable').DataTable( {
-		//load the data
+		//
+		//Loading the dataset for the active refresh table
+		//
 		"data": activeDataSet,
-		//create the columns
+		//
+		//Defining the columns for the table
+		//
 		"columns": [
 			{ 
 				"className": 'select',
@@ -115,21 +156,36 @@ $(document).ready( function () {
 				readonly: true
 			}
 		],
-		//making sure the tickets are inorder
+		//
+		//This property will load the data for the table in ascending order
+		//
 		"order" : [[1, 'asc']],
-		//used for the select library by making the table response
+		//
+		//This property will make the table responsive to change
+		//
 		responsive: true,
-		//Enabled alt editor
+		//
+		//This property enables the alt editor library to work as the editor for the data table
+		//
 		altEditor: true,
-		//automatically changes the width
+		//
+		//This property allows the DataTable to adjust the width automatically
+		//
 		autoWitdh: true,
-		//makes it so the table is scrollable on the horizontal axis
+		//
+		//This property allows the DataTable to be scrollable on the horizontal axis
+		//
 		scrollX: true,
-		//this singular line has cost me 5 hours of debugging, thank you random german person for writing a comment on stack
-		//overflow 2 years ago which fixes the issue
+		//
+		//This property allows the selection of rows in the table
+		//
 		select: "single"
 	});
-	//When a row is selected it will highlight it
+	//
+	//Function Type: On Click Event
+	//Description: When you click on a row within a table it will add the selected class to that table row to signal that it is selected. 
+	//This function will also enable the edit and delete button when you select a row.
+	//
 	$('#activeRefreshesTable tbody').on('click', 'td.select', function () {
 		var tr = $(this).closest('tr');
 		var editBtn = document.getElementById('activeEditButton');
@@ -146,7 +202,10 @@ $(document).ready( function () {
 			deleteBtn.disabled = false;
         }
     });
-	//add button
+	//
+	//Function Type: On Click Event
+	//Description: When you click the add button it will use the AltEditor to pull up the new entry menu.
+	//
 	$('#activeAddbutton').on('click', function () {
 		var that = $( '#activeRefreshesTable' )[0].altEditor;
 		that._openAddModal();
@@ -158,7 +217,10 @@ $(document).ready( function () {
 				that._addRowData();
 			});
 	});
-  //delete button
+	//
+	//Function Type: On Click Event
+	//Description: When you click the add button it will use the AltEditor to pull up the edit entry menu
+	//
 	$('#activeDeleteButton').on('click', function (x) {  
 		var that = $( '#activeRefreshesTable')[0].altEditor;
 		that._openDeleteModal();
@@ -171,7 +233,10 @@ $(document).ready( function () {
 			});
 		x.stopPropagation(); //avoid open "Edit" dialog
 	});
-  //edit
+	//
+	//Function Type: On Click Event
+	//Description: When you click the add button it will use the AltEditor to pull up the delete entry menu.
+	//
 	$('#activeEditButton').on('click', function () {
 		var that = $( '#activeRefreshesTable' )[0].altEditor;
 		that._openEditModal();
@@ -183,21 +248,33 @@ $(document).ready( function () {
 				that._editRowData();
 			});
 	});
-	//Label link
+	//
+	//Function Type: On Click Event
+	//Description: When you click the label link, it will open the label file with the data sent by the sessionDataLabel function
+	//
 	$(document).on('click', "[id^='activeRefreshesTable'] .activeLabelButton", 'tr', function (x) {
 		sessionDataLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/label.html", "_blank");
 	});
-	//New Return Label Link
+	//
+	//Function Type: On Click Event
+	//Description: When you click the new return link it will open the new return label html file with the data provided by ther sessionDataReturnLabel function
+	//
 	$(document).on('click', "[id^='activeRefreshesTable'] .activeReturnLabelButton", 'tr', function (x) {
 		sessionDataReturnLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
 	});
-	//Deployed Table Initialization
+	//
+	//Initialization for the deployed refresh table's DataTable
+	//
 	var deployedTable = $('#deployedRefreshesTable').DataTable( {
-		//load the data
+		//
+		//Loading the dataset for the deployed refresh table
+		//
 		"data": deployedDataSet,
-		//create the columns
+		//
+		//Defining the columns for the table
+		//
 		"columns": [
 			{ 
 				"className": 'select',
@@ -280,21 +357,36 @@ $(document).ready( function () {
 				readonly: true
 			}
 		],
-		//making sure the tickets are inorder
+		//
+		//This property will load the data for the table in ascending order
+		//
 		"order" : [[1, 'asc']],
-		//used for the select library by making the table response
+		//
+		//This property will make the table responsive to change
+		//
 		responsive: true,
-		//Enabled alt editor
+		//
+		//This property enables the alt editor library to work as the editor for the data table
+		//
 		altEditor: true,
-		//automatically changes the width
+		//
+		//This property allows the DataTable to adjust the width automatically
+		//
 		autoWitdh: true,
-		//makes it so the table is scrollable on the horizontal axis
+		//
+		//This property allows the DataTable to be scrollable on the horizontal axis
+		//
 		scrollX: true,
-		//this singular line has cost me 5 hours of debugging, thank you random german person for writing a comment on stack
-		//overflow 2 years ago which fixes the issue
-		select: "multiple"
+		//
+		//This property allows the selection of rows in the table
+		//
+		select: "single"
 	});
-	//When a row is selected it will highlight it
+	//
+	//Function Type: On Click Event
+	//Description: When you click on a row within a table it will add the selected class to that table row to signal that it is selected. 
+	//This function will also enable the edit and delete button when you select a row.
+	//
 	$('#deployedRefreshesTable tbody').on('click', 'td.select', function () {
 		var tr = $(this).closest('tr');
 		var editBtn = document.getElementById('deployedEditButton');
@@ -310,7 +402,10 @@ $(document).ready( function () {
 			deleteBtn.disabled = false;
         }
     });
-	//add button
+	//
+	//Function Type: On Click Event
+	//Description: When you click the add button it will use the AltEditor to pull up the new entry menu.
+	//
 	$('#deployedAddbutton').on('click', function () {
 		var that = $( '#deployedRefreshesTable' )[0].altEditor;
 		that._openAddModal();
@@ -322,7 +417,10 @@ $(document).ready( function () {
 				that._addRowData();
 			});
 	});
-  //delete button
+	//
+	//Function Type: On Click Event
+	//Description: When you click the add button it will use the AltEditor to pull up the edit entry menu
+	//
 	$('#deployedDeleteButton').on('click', function (x) {  
 		var that = $( '#deployedRefreshesTable')[0].altEditor;
 		that._openDeleteModal();
@@ -335,7 +433,10 @@ $(document).ready( function () {
 			});
 		x.stopPropagation(); //avoid open "Edit" dialog
 	});
-  //edit
+	//
+	//Function Type: On Click Event
+	//Description: When you click the add button it will use the AltEditor to pull up the delete entry menu.
+	//
 	$('#deployedEditButton').on('click', function () {
 		var that = $( '#deployedRefreshesTable' )[0].altEditor;
 		that._openEditModal();
@@ -347,12 +448,18 @@ $(document).ready( function () {
 				that._editRowData();
 			});
 	});
-	//Label link
+	//
+	//Function Type: On Click Event
+	//Description: When you click the label link, it will open the label file with the data sent by the sessionDataLabel function
+	//
 	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedLabelButton", 'tr', function (x) {
 		sessionDataLabel(deployedTable.row('.selected').data());
 		window.open("HTMLTemplates/label.html", "_blank");
 	});
-	//New Return Label Link
+	//
+	//Function Type: On Click Event
+	//Description: When you click the new return link it will open the new return label html file with the data provided by ther sessionDataReturnLabel function
+	//
 	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedReturnLabelButton", 'tr', function (x) {
 		sessionDataReturnLabel(deployedTable.row('.selected').data());
 		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
