@@ -173,10 +173,6 @@ $(document).ready( function () {
 		//
 		autoWitdh: true,
 		//
-		//This property allows the DataTable to be scrollable on the horizontal axis
-		//
-		//scrollX: true,
-		//
 		//This property allows the selection of rows in the table
 		//
 		select: "single"
@@ -505,4 +501,21 @@ $(document).ready( function () {
 		activeTable.draw();
 		deployedTable.draw();
 	});
+	//
+	//Function Type: On Keystroke
+	//Description: As you type in the search bar it will search the tables
+	//
+	$("#refreshSearch").on("keyup click", function() {
+		var tables = $('table.dataTable');
+		tables.DataTable().search(this.value).draw();
+	});
+	//
+	//Function Type: On Click
+	//Description: When you click on the x in the search box it will reset the filters
+	//
+	$('input#refreshSearch.form-control').on('click', function() {
+		var tables = $('table.dataTable');
+		tables.DataTable().search('').draw();
+	});
 });
+
