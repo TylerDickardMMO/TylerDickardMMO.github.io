@@ -77,67 +77,67 @@ $(document).ready( function () {
 		"columns": [
 			{ 
 				"className": 'select',
-				"data": "ticketNumber"
+				data: "ticketNumber"
 			},
 			{ 
 				"className": 'select',
-				"data": "csa" 
+				data: "csa" 
 			},
 			{ 
 				"className": 'select',
-				"data": "dateAccepted",
+				data: "dateAccepted",
 				datetimepicker: { timepicker: false, format : "m/d/Y"}
 			},
 			{ 
 				"className": 'select',
-				"data": "endUser"
+				data: "endUser"
 			},
 			{
 				"className": 'select',
-				"data": "userID"
+				data: "userID"
 			},
 			{
 				"className": 'select',
-				"data": "stage",
+				data: "stage",
 				type: "select",
 				select2 : { width: "100%"},
 				options: stageOptions,
 			},
 			{
 				"className": 'select',
-				"data": "userEmail"
+				data: "userEmail"
 			},
 			{
 				"className": 'select',
-				"data": "csaEmail"
+				data: "csaEmail"
 			},
 			{
 				"className": 'select',
-				"data": "oldAsstTag"
+				data: "oldAsstTag"
 			},
 			{
 				"className": 'select',
-				"data": "newAsstTag"
+				data: "newAsstTag"
 			},
 			{
 				"className": 'select',
-				"data": "oldModelNumber"
+				data: "oldModelNumber"
 			},
 			{
 				"className": 'select',
-				"data": "newModelNumber"
+				data: "newModelNumber"
 			},
 			{
 				"className": 'select',
-				"data": "managerName"
+				data: "managerName"
 			},
 			{
 				"className": 'select',
-				"data": "managerEmail"
+				data: "managerEmail"
 			},
 			{
 				"className": 'select',
-				"data": "mailZone"
+				data: "mailZone"
 			},
 			{
 				"className": 'select',
@@ -154,7 +154,7 @@ $(document).ready( function () {
 				  return '<a class="activeReturnLabelButton" id="newButton">View New Return Label</a>';
 				},
 				readonly: true
-			}
+			},
 		],
 		//
 		//This property will load the data for the table in ascending order
@@ -175,7 +175,7 @@ $(document).ready( function () {
 		//
 		//This property allows the DataTable to be scrollable on the horizontal axis
 		//
-		scrollX: true,
+		//scrollX: true,
 		//
 		//This property allows the selection of rows in the table
 		//
@@ -190,16 +190,18 @@ $(document).ready( function () {
 		var tr = $(this).closest('tr');
 		var editBtn = document.getElementById('activeEditButton');
 		var deleteBtn = document.getElementById('activeDeleteButton');
-		var lblBtn = document.getElementById('activeLabelButton');
+		var transferBtn = document.getElementById('activeTransferButton');
         if (tr.hasClass('selected')) {
             tr.removeClass('selected');
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
+			transferBtn.disabled = true;
         } else {
             activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
+			transferBtn.disabled = false;
         }
     });
 	//
@@ -278,67 +280,67 @@ $(document).ready( function () {
 		"columns": [
 			{ 
 				"className": 'select',
-				"data": "ticketNumber"
+				data: "ticketNumber"
 			},
 			{ 
 				"className": 'select',
-				"data": "csa" 
+				data: "csa" 
 			},
 			{ 
 				"className": 'select',
-				"data": "dateAccepted",
+				data: "dateAccepted",
 				datetimepicker: { timepicker: false, format : "m/d/Y"}
 			},
 			{ 
 				"className": 'select',
-				"data": "endUser"
+				data: "endUser"
 			},
 			{
 				"className": 'select',
-				"data": "userID"
+				data: "userID"
 			},
 			{
 				"className": 'select',
-				"data": "stage",
+				data: "stage",
 				type: "select",
 				select2 : { width: "100%"},
 				options: stageOptions
 			},
 			{
 				"className": 'select',
-				"data": "userEmail"
+				data: "userEmail"
 			},
 			{
 				"className": 'select',
-				"data": "csaEmail"
+				data: "csaEmail"
 			},
 			{
 				"className": 'select',
-				"data": "oldAsstTag"
+				data: "oldAsstTag"
 			},
 			{
 				"className": 'select',
-				"data": "newAsstTag"
+				data: "newAsstTag"
 			},
 			{
 				"className": 'select',
-				"data": "oldModelNumber"
+				data: "oldModelNumber"
 			},
 			{
 				"className": 'select',
-				"data": "newModelNumber"
+				data: "newModelNumber"
 			},
 			{
 				"className": 'select',
-				"data": "managerName"
+				data: "managerName"
 			},
 			{
 				"className": 'select',
-				"data": "managerEmail"
+				data: "managerEmail"
 			},
 			{
 				"className": 'select',
-				"data": "mailZone"
+				data: "mailZone"
 			},
 			{
 				"className": 'select',
@@ -355,7 +357,7 @@ $(document).ready( function () {
 				  return '<a class="deployedReturnLabelButton" id="newButton">View New Return Label</a>';
 				},
 				readonly: true
-			}
+			},
 		],
 		//
 		//This property will load the data for the table in ascending order
@@ -376,7 +378,7 @@ $(document).ready( function () {
 		//
 		//This property allows the DataTable to be scrollable on the horizontal axis
 		//
-		scrollX: true,
+		//scrollX: true,
 		//
 		//This property allows the selection of rows in the table
 		//
@@ -391,15 +393,18 @@ $(document).ready( function () {
 		var tr = $(this).closest('tr');
 		var editBtn = document.getElementById('deployedEditButton');
 		var deleteBtn = document.getElementById('deployedDeleteButton');
+		var transferBtn = document.getElementById('deployedTransferButton');
         if (tr.hasClass('selected')) {
             tr.removeClass('selected');
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
+			transferBtn.disabled = true;
         } else {
             activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
+			transferBtn.disabled = false;
         }
     });
 	//
@@ -463,5 +468,41 @@ $(document).ready( function () {
 	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedReturnLabelButton", 'tr', function (x) {
 		sessionDataReturnLabel(deployedTable.row('.selected').data());
 		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
+	});
+	//
+	//Function Type: On Click Event
+	//Description: When the active transfer button is clicked, it will copy the selected row's data and create a new row on the deployed
+	//table with that data. It will then delete the old row and redraw the table to update the entries.
+	//
+	$('#activeTransferButton').on('click', function () {
+		var tr = document.getElementsByClassName("selected");
+		var row = activeTable.row(tr);
+		deployedTable.row.add(row.data());
+		activeTable.row(tr).remove();
+		
+		activeTable.draw();
+		deployedTable.draw();
+	});
+	//
+	//Function Type: On Click Event
+	//Description: When the active transfer button is clicked, it will copy the selected row's data and create a new row on the active
+	//table with that data. It will then delete the old row and redraw the table to update the entries.
+	//
+	$('#deployedTransferButton').on('click', function () {
+		var tr = document.getElementsByClassName("selected");
+		var row = deployedTable.row(tr);
+		activeTable.row.add(row.data());
+		deployedTable.row(tr).remove();
+		
+		activeTable.draw();
+		deployedTable.draw();
+	});
+	//
+	//Function Type: On Resize
+	//Description: When the window resizes it will redraw the tables to match the size of the webpage.
+	//
+	window.addEventListener("resize", function() {
+		activeTable.draw();
+		deployedTable.draw();
 	});
 });
