@@ -2,6 +2,8 @@
 html {
 	scroll-behavior: smooth;
 	font-family: Helvetica, Arial, sans-serif;
+	max-width: 100%;
+	overflow-x: hidden;
 }
 th {
 	background: lightgray;
@@ -45,20 +47,8 @@ td {
 .content {
   padding: 30px;
 }
-/*DataTables Styling*/
-td.dt-control {
-    background: url('https://cekfakta.com/vendor/datatables/datatables/examples/resources/details_open.png') no-repeat center center;
-    cursor: pointer;
-}
-tr.shown td.dt-control{
-    background: url('https://cekfakta.com/vendor/datatables/datatables/examples/resources/details_close.png') no-repeat center center;
-}
-table.dataTable {
-	border-collapse: collapse;
-	width: 100%;
-}
-th{
-	width: 100%;
+th {
+	width: 2%;
 }
 tr.selected td a {
 	color: white;
