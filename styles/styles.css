@@ -29,3 +29,6 @@ tr td a {
 table {
 	max-width: 99.2%;
 }
+.dataTables_length select {
+	width: 40%;
+} 
