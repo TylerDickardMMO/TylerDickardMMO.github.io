@@ -100,7 +100,6 @@ $(document).ready( function () {
 				"className": 'select',
 				data: "stage",
 				type: "select",
-				select2 : { width: "100%"},
 				options: stageOptions,
 			},
 			{
@@ -193,7 +192,6 @@ $(document).ready( function () {
 			deleteBtn.disabled = true;
 			transferBtn.disabled = true;
         } else {
-            activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
@@ -518,4 +516,3 @@ $(document).ready( function () {
 		tables.DataTable().search('').draw();
 	});
 });
-

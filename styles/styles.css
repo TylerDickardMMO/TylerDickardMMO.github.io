@@ -2,7 +2,8 @@
 html {
 	scroll-behavior: smooth;
 	font-family: Helvetica, Arial, sans-serif;
-	max-width: 99.2%;
+	max-width: 100%;
+	background: #f0f2f4;
 }
 th {
 	background: lightgray;
@@ -13,7 +14,7 @@ th {
 section {
   min-height: 100vh;
   padding-top: 100px;
-  background: #f8f9fa;
+  
 }
 
 th {
@@ -24,4 +25,10 @@ tr.selected td a {
 }
 tr td a {
 	color: #337ab7;
+}
+table {
+	max-width: 99.2%;
+}
+.select2-dropdown {
+    z-index:999999999;
 }

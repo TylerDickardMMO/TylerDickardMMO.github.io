@@ -1,38 +1,27 @@
 <!DOCTYPE html>
-<!--
-Future Plans:
-1. Restyle the NavBar, make it horizontal
-2. Implement AD or a login system
-6. If we do go with SQL temporarily, create a query to get the software inventories
-7. Do more styling overall to improve the feel of the webapp to make it more modern/industrial
--->
 <html lang = "en">
-	<!-- My Stylesheet-->
-	<link rel = "stylesheet" href="styles/styles.css">
-	<!-- jQuery addon-->
-	<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
-	<!-- Table initialization and features file-->
-	<script type="text/javascript" src="scripts/main.js"></script>
-	<!-- stylesheets for data tables and its plugins -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.css" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.css" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
-	
 	<!--Setting the form as a viewport-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<head>
 		<!--Title of the webpage-->
 		<title>Build Log Manager</title>
 	</head>
+	<!-- My Stylesheet-->
+	<link rel = "stylesheet" href="styles/styles.css">
+	<!-- stylesheets for data tables and its plugins -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!--Main contents of a page-->
 	<body id="body">
 		<!--Nav Bar, provided by Bootstrap.com-->
-		<nav class="navbar bg fixed-top">
+		<nav class="navbar bg-light fixed-top">
 			<div class="container-fluid">
 				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="float: right">
 					<span class="navbar-toggler-icon"></span>
@@ -125,17 +114,25 @@ Future Plans:
 			</table>
 		</section>
 	</body>
+	<!-- jQuery addon-->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
 	<!--Scripts for data tables and its plugins-->
-	<script src="https://code.jquery.com/jquery-3.0.0.js" ></script>
-	<script src="https://code.jquery.com/jquery-migrate-3.3.0.js" ></script>
-	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" ></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" ></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.js" ></script>
 	<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.js" ></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" ></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.js" ></script>
 	<script src ="scripts/dataTables.altEditor.free.js"></script>
 	<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js" ></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<!-- Table initialization and features file-->
+	<script type="text/javascript" src="scripts/main.js"></script>
+	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-light">
+		<div class="col-md-4 d-flex align-items-center">
+			<span class="mb-3 mb-md-0 text-muted">© 2022, Medical Mutual - All Rights Reserved</span>
+		</div>
+	</footer>
 </html>
