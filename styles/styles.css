@@ -29,6 +29,3 @@ tr td a {
 table {
 	max-width: 99.2%;
 }
-.select2-dropdown {
-    z-index:999999999;
-}

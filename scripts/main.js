@@ -503,9 +503,10 @@ $(document).ready( function () {
 	//Function Type: On Keystroke
 	//Description: As you type in the search bar it will search the tables
 	//
-	$("#refreshSearch").on("keyup click", function() {
+	$("#refreshSearch").on("keyup", function() {
 		var tables = $('table.dataTable');
 		tables.DataTable().search(this.value).draw();
+		console.log(tables.DataTable().search(this.value).data());
 	});
 	//
 	//Function Type: On Click
@@ -513,6 +514,8 @@ $(document).ready( function () {
 	//
 	$('input#refreshSearch.form-control').on('click', function() {
 		var tables = $('table.dataTable');
-		tables.DataTable().search('').draw();
+		if(document.getElementById('refreshSearch').value == '') {
+			tables.DataTable().search('').draw();
+		}
 	});
 });
