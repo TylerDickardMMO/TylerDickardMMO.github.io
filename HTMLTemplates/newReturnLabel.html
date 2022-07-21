@@ -122,9 +122,8 @@
 			var today =new Date();
 			var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
 			var dateWipe = (today.getMonth()+1)+'-'+(today.getDate()+5)+'-'+today.getFullYear();
-			document.getElementById("dateSent").innerHTML = "Date Sent: " + date +" Wipe Eligible: "+dateWipe;
-			
-			
+			document.getElementById("dateSent").innerHTML = "Date Sent: " + date +"<br>Wipe Eligible: "+dateWipe;
+		
 			var assetOld = window.localStorage.getItem("oldAsstTag");
 			for(let x= 0; x<2; x++) {
 				document.getElementById("fillInOldAssetTag"+x).innerHTML = assetOld;

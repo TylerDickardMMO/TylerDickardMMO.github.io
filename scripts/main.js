@@ -215,7 +215,7 @@ $(document).ready( function () {
 	});
 	//
 	//Function Type: On Click Event
-	//Description: When you click the add button it will use the AltEditor to pull up the edit entry menu
+	//Description: When you click the delete button it will warn you before you delete an entry. If confirmed it will delete the entry
 	//
 	$('#activeDeleteButton').on('click', function (x) {  
 		var that = $( '#activeRefreshesTable')[0].altEditor;
@@ -231,7 +231,7 @@ $(document).ready( function () {
 	});
 	//
 	//Function Type: On Click Event
-	//Description: When you click the add button it will use the AltEditor to pull up the delete entry menu.
+	//Description: When you click the edit button it will use the AltEditor to pull up the edit entry menu.
 	//
 	$('#activeEditButton').on('click', function () {
 		var that = $( '#activeRefreshesTable' )[0].altEditor;
@@ -370,10 +370,6 @@ $(document).ready( function () {
 		//
 		autoWitdh: true,
 		//
-		//This property allows the DataTable to be scrollable on the horizontal axis
-		//
-		//scrollX: true,
-		//
 		//This property allows the selection of rows in the table
 		//
 		select: "single"
@@ -394,7 +390,6 @@ $(document).ready( function () {
 			deleteBtn.disabled = true;
 			transferBtn.disabled = true;
         } else {
-            activeTable.$('tr.selected').removeClass('selected');
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
@@ -512,10 +507,16 @@ $(document).ready( function () {
 	//Function Type: On Click
 	//Description: When you click on the x in the search box it will reset the filters
 	//
-	$('input#refreshSearch.form-control').on('click', function() {
+	$('input#refreshSearch.form-control').on('keyup click', function() {
 		var tables = $('table.dataTable');
 		if(document.getElementById('refreshSearch').value == '') {
 			tables.DataTable().search('').draw();
 		}
 	});
+	$(window).keydown(function(event){
+		if(event.keyCode == 13) {
+		  event.preventDefault();
+		  return false;
+		}
+	  });
 });
