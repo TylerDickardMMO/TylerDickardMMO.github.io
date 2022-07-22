@@ -495,9 +495,11 @@ $(document).ready( function () {
 	//
 	$('input#refreshSearch.form-control').on('keyup click', function() {
 		var tables = $('table.dataTable');
-		if(document.getElementById('refreshSearch').value == '') {
-			tables.DataTable().search('').draw();
-		}
+		window.setTimeout(function() {
+			if(document.getElementById('refreshSearch').value == '') {
+				tables.DataTable().search('').draw();
+			}
+		}, 100);
 	});
 	$(window).keydown(function(event){
 		if(event.keyCode == 13) {
