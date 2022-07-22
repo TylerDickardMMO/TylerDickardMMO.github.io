@@ -160,21 +160,14 @@ $(document).ready( function () {
 		//
 		"order" : [[1, 'asc']],
 		//
-		//This property will make the table responsive to change
-		//
-		responsive: true,
-		//
 		//This property enables the alt editor library to work as the editor for the data table
 		//
 		altEditor: true,
 		//
-		//This property allows the DataTable to adjust the width automatically
-		//
-		autoWitdh: true,
-		//
 		//This property allows the selection of rows in the table
 		//
-		select: "single"
+		select: "single",
+		scrollX: true
 	});
 	//
 	//Function Type: On Click Event
@@ -358,21 +351,14 @@ $(document).ready( function () {
 		//
 		"order" : [[1, 'asc']],
 		//
-		//This property will make the table responsive to change
-		//
-		responsive: true,
-		//
 		//This property enables the alt editor library to work as the editor for the data table
 		//
 		altEditor: true,
 		//
-		//This property allows the DataTable to adjust the width automatically
-		//
-		autoWitdh: true,
-		//
 		//This property allows the selection of rows in the table
 		//
-		select: "single"
+		select: "single",
+		scrollX: true
 	});
 	//
 	//Function Type: On Click Event

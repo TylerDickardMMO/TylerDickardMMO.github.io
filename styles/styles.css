@@ -27,8 +27,12 @@ tr td a {
 	color: #337ab7;
 }
 table {
-	max-width: 99.2%;
+	max-width: 1080px;
 }
 .dataTables_length select {
 	width: 40%;
 } 
+
+div.container {
+	width:70%;
+}
