@@ -137,23 +137,7 @@ $(document).ready( function () {
 			{
 				"className": 'select',
 				data: "mailZone"
-			},
-			{
-				"className": 'select',
-				data: null,
-				render: function (data, type, row, meta) {
-				  return '<a class="activeLabelButton" id="labelButton">View Label</a>';
-				},
-				readonly: true
-			},
-			{
-				"className": 'select',
-				data: null,
-				render: function (data, type, row, meta) {
-				  return '<a class="activeReturnLabelButton" id="newButton">View New Return Label</a>';
-				},
-				readonly: true
-			},
+			}
 		],
 		//
 		//This property will load the data for the table in ascending order
@@ -179,16 +163,25 @@ $(document).ready( function () {
 		var editBtn = document.getElementById('activeEditButton');
 		var deleteBtn = document.getElementById('activeDeleteButton');
 		var transferBtn = document.getElementById('activeTransferButton');
+		var softwareBtn = document.getElementById('activeSoftwareCompareButton');
+		var labelBtn = document.getElementById('activeLabelButton');
+		var newReturnBtn = document.getElementById('activeNewReturnButton')
         if (tr.hasClass('selected')) {
             tr.removeClass('selected');
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
 			transferBtn.disabled = true;
+			softwareBtn.disabled = true;
+			labelBtn.disabled = true;
+			newReturnBtn.disabled = true;
         } else {
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
 			transferBtn.disabled = false;
+			softwareBtn.disabled = false;
+			labelBtn.disabled = false;
+			newReturnBtn.disabled = false;
         }
     });
 	//
@@ -241,7 +234,7 @@ $(document).ready( function () {
 	//Function Type: On Click Event
 	//Description: When you click the label link, it will open the label file with the data sent by the sessionDataLabel function
 	//
-	$(document).on('click', "[id^='activeRefreshesTable'] .activeLabelButton", 'tr', function (x) {
+	$('#activeLabelButton').on('click', function (x) {
 		sessionDataLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/label.html", "_blank");
 	});
@@ -249,7 +242,7 @@ $(document).ready( function () {
 	//Function Type: On Click Event
 	//Description: When you click the new return link it will open the new return label html file with the data provided by ther sessionDataReturnLabel function
 	//
-	$(document).on('click', "[id^='activeRefreshesTable'] .activeReturnLabelButton", 'tr', function (x) {
+	$('#activeNewReturnButton').on('click', function (x) {
 		sessionDataReturnLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
 	});
@@ -329,22 +322,6 @@ $(document).ready( function () {
 				"className": 'select',
 				data: "mailZone"
 			},
-			{
-				"className": 'select',
-				data: null,
-				render: function (data, type, row, meta) {
-				  return '<a class="deployedLabelButton" id="labelButton">View Label</a>';
-				},
-				readonly: true
-			},
-			{
-				"className": 'select',
-				data: null,
-				render: function (data, type, row, meta) {
-				  return '<a class="deployedReturnLabelButton" id="newButton">View New Return Label</a>';
-				},
-				readonly: true
-			},
 		],
 		//
 		//This property will load the data for the table in ascending order
@@ -370,16 +347,25 @@ $(document).ready( function () {
 		var editBtn = document.getElementById('deployedEditButton');
 		var deleteBtn = document.getElementById('deployedDeleteButton');
 		var transferBtn = document.getElementById('deployedTransferButton');
+		var softwareBtn = document.getElementById('deployedSoftwareCompareButton');
+		var labelBtn = document.getElementById('deployedLabelButton');
+		var newReturnBtn = document.getElementById('deployedNewReturnButton')
         if (tr.hasClass('selected')) {
             tr.removeClass('selected');
 			editBtn.disabled = true;
 			deleteBtn.disabled = true;
 			transferBtn.disabled = true;
+			softwareBtn.disabled = true;
+			labelBtn.disabled = true;
+			newReturnBtn.disabled = true;
         } else {
             tr.addClass('selected');
 			editBtn.disabled = false;
 			deleteBtn.disabled = false;
 			transferBtn.disabled = false;
+			softwareBtn.disabled = false;
+			labelBtn.disabled = false;
+			newReturnBtn.disabled = false;
         }
     });
 	//
@@ -432,16 +418,16 @@ $(document).ready( function () {
 	//Function Type: On Click Event
 	//Description: When you click the label link, it will open the label file with the data sent by the sessionDataLabel function
 	//
-	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedLabelButton", 'tr', function (x) {
-		sessionDataLabel(deployedTable.row('.selected').data());
+	$('#deployedLabelButton').on('click', function (x) {
+		sessionDataLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/label.html", "_blank");
 	});
 	//
 	//Function Type: On Click Event
 	//Description: When you click the new return link it will open the new return label html file with the data provided by ther sessionDataReturnLabel function
 	//
-	$(document).on('click', "[id^='deployedRefreshesTable'] .deployedReturnLabelButton", 'tr', function (x) {
-		sessionDataReturnLabel(deployedTable.row('.selected').data());
+	$('#deployedNewReturnButton').on('click', function (x) {
+		sessionDataReturnLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
 	});
 	//
