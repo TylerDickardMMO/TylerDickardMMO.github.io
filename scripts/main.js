@@ -48,6 +48,8 @@ function sessionDataReturnLabel(d) {
 //Returns: N/A
 //Description: This function will initialize all of the data and resources for the DataTables and its functions
 //
+var activeTable;
+var deployedTable;
 $(document).ready( function () {
 	//
 	//This is the temporary dataset for the active refresh table
@@ -66,7 +68,7 @@ $(document).ready( function () {
 	//
 	//Initialization for the active refresh table's DataTable
 	//
-    var activeTable = $('#activeRefreshesTable').DataTable( {
+    activeTable = $('#activeRefreshesTable').DataTable( {
 		//
 		//Loading the dataset for the active refresh table
 		//
@@ -249,7 +251,7 @@ $(document).ready( function () {
 	//
 	//Initialization for the deployed refresh table's DataTable
 	//
-	var deployedTable = $('#deployedRefreshesTable').DataTable( {
+	deployedTable = $('#deployedRefreshesTable').DataTable( {
 		//
 		//Loading the dataset for the deployed refresh table
 		//
@@ -494,3 +496,9 @@ $(document).ready( function () {
 		}
 	  });
 });
+function openSoftwareCompare() {
+	var tr = document.getElementsByClassName("selected");
+	var row = activeTable.row(tr).data().oldModelNumber;
+	document.cookie = "oldModelNumber = " + row;
+	window.open("HTMLTemplates/softwareCompare.php", "_blank");
+};
