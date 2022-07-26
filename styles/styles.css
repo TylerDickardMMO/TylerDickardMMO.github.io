@@ -36,3 +36,6 @@ table {
 div.container {
 	width:70%;
 }
+.invisible {
+	visibility: hidden;
+}
