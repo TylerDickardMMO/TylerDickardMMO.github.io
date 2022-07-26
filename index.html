@@ -139,14 +139,15 @@
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="HTMLTemplates/softwareCompare.php" method="POST" enctype="multipart/form-data" style="padding-bottom: 20px;">
+				<form action="upload.php" method="POST" enctype="multipart/form-data" style="padding-bottom: 20px;">
 					<input type="file" id="myFile" name="filename">
+				
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary invisible">Use Previous Comparison?</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary" name='submit'>Upload File</button>
+					</div>
 				</form>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary invisible">Use Previous Comparison?</button>
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Upload File</button>
-				</div>
 			</div>
 		  </div>
 		</div>
