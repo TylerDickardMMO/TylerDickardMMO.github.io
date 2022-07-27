@@ -248,6 +248,18 @@ $(document).ready( function () {
 		sessionDataReturnLabel(activeTable.row('.selected').data());
 		window.open("HTMLTemplates/newReturnLabel.html", "_blank");
 	});
+	$('#activeSoftwareCompareButton').on('click', function() {
+		var tr = document.getElementsByClassName("selected");
+		var row = activeTable.row(tr).data().oldModelNumber;
+		
+		$.ajax ({
+			url:"../upload/"+row+".csv",
+			type: 'HEAD',
+			success : function () {
+				$('#prevCompare').removeClass("invisible");
+			}
+		});
+	});
 	//
 	//Initialization for the deployed refresh table's DataTable
 	//
@@ -440,6 +452,13 @@ $(document).ready( function () {
 	$('#activeTransferButton').on('click', function () {
 		var tr = document.getElementsByClassName("selected");
 		var row = activeTable.row(tr);
+		document.getElementById('activeEditButton').disabled = true;
+		document.getElementById('activeDeleteButton').disabled = true;
+		document.getElementById('activeTransferButton').disabled = true;
+		document.getElementById('activeSoftwareCompareButton').disabled = true;
+		document.getElementById('activeLabelButton').disabled = true;
+		document.getElementById('activeNewReturnButton').disabled = true;
+		
 		deployedTable.row.add(row.data());
 		activeTable.row(tr).remove();
 		
@@ -454,6 +473,13 @@ $(document).ready( function () {
 	$('#deployedTransferButton').on('click', function () {
 		var tr = document.getElementsByClassName("selected");
 		var row = deployedTable.row(tr);
+		document.getElementById('activeEditButton').disabled = true;
+		document.getElementById('activeDeleteButton').disabled = true;
+		document.getElementById('activeTransferButton').disabled = true;
+		document.getElementById('activeSoftwareCompareButton').disabled = true;
+		document.getElementById('activeLabelButton').disabled = true;
+		document.getElementById('activeNewReturnButton').disabled = true;
+
 		activeTable.row.add(row.data());
 		deployedTable.row(tr).remove();
 		
