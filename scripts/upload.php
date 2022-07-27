@@ -12,7 +12,7 @@
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
         //define what extensions are allowed
-        $allow = array('csv','xls','xlsx');
+        $allow = array('csv');
         //check and upload
         if(in_array($fileActualExt, $allow)) {
             if($fileError === 0) {

@@ -142,8 +142,8 @@
 			</div>
 			<div class="modal-body">
 				<form action="scripts/upload.php" method="POST" enctype="multipart/form-data">
-					<input type="file" id="myFile" name="filename">
-					<p  style="padding-bottom: 10px; color: gray;">*Only accepts .csv, .xls, and .xlsx files</p>
+					<input type="file" id="myFile" name="filename" accept=".csv">
+					<p  style="padding-bottom: 10px; color: gray;">*Only accepts .csv files</p>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary invisible" onclick="openSoftwareCompare()" id="prevCompare" data-bs-dismiss="modal">Use Previous Comparison?</button>
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>

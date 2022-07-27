@@ -458,7 +458,7 @@ $(document).ready( function () {
 		document.getElementById('activeSoftwareCompareButton').disabled = true;
 		document.getElementById('activeLabelButton').disabled = true;
 		document.getElementById('activeNewReturnButton').disabled = true;
-		
+
 		deployedTable.row.add(row.data());
 		activeTable.row(tr).remove();
 		
@@ -524,7 +524,8 @@ $(document).ready( function () {
 });
 function openSoftwareCompare() {
 	var tr = document.getElementsByClassName("selected");
-	var row = activeTable.row(tr).data().oldModelNumber;
-	document.cookie = "oldModelNumber = " + row;
+	var row = activeTable.row(tr).data();
+	document.cookie = "oldModelNumber = " + row.oldModelNumber;
+	window.localStorage.setItem('newDeviceName', row.newModelNumber);
 	window.open("HTMLTemplates/softwareCompare.php", "_blank");
 };
