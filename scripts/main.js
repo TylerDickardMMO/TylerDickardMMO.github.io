@@ -527,5 +527,6 @@ function openSoftwareCompare() {
 	var row = activeTable.row(tr).data();
 	document.cookie = "oldModelNumber = " + row.oldModelNumber;
 	window.localStorage.setItem('newDeviceName', row.newModelNumber);
+	window.localStorage.setItem("oldDeviceName", row.oldModelNumber);
 	window.open("HTMLTemplates/softwareCompare.php", "_blank");
 };

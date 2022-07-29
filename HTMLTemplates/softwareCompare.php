@@ -18,7 +18,7 @@
     <body id="body">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 			<div class="container-fluid">
-			  <a class="navbar-brand" href="#body">Home</a>
+			  <a class="navbar-brand" href="../index.html">Home</a>
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				  <li class="nav-item">
@@ -72,6 +72,9 @@
                         <th>Publisher</th>
                     </tr>
                 </thead>
+                <tbody id="versionBody">
+
+                </tbody>
             </table>
         </section>
         <section id="installedSoftware">
@@ -87,6 +90,9 @@
                         <th>Publisher</th>
                     </tr>
                 </thead>
+                <tbody id="installedBody">
+
+                </tbody>
             </table>
         </section>
     </body>
@@ -117,10 +123,9 @@
     <?php
         include_once("../scripts/dbh.inc.php");
         $oldDevName = $_COOKIE['oldModelNumber'];
-        $js_array = array();
+        $js_array = [];
         $sql = "
         SELECT 
-            SYS.Name0 AS Name,
             InstallSoftware.ProductName0 AS ProductName,
             InstallSoftware.ProductVersion0 AS ProductVersion,
             InstallSoftware.Publisher0 AS Publisher
@@ -128,23 +133,32 @@
             v_R_System AS SYS
         JOIN v_GS_INSTALLED_SOFTWARE InstallSoftware ON InstallSoftware.ResourceID = SYS.ResourceID
         WHERE SYS.Name0= ?";
-        $stmt = sqlsrv_prepare($conn, $sql, array(&$oldDevName));
+        $stmt = sqlsrv_query($conn, $sql, array($oldDevName));
         sqlsrv_execute($stmt);
         while ($row = sqlsrv_fetch_array($stmt)) {
-            $js_array[] = json_encode($row);
+            array_push($js_array,$row); 
         }
-        echo "var javascript_array = ". json_encode($js_array) . ";\n";
-    ?>
-    for(let i = 0; i < javascript_array.length; i++) {
-        console.log (javascript_array[i]);
-    }
-    Papa.parse("../upload/"+ window.localStorage.getItem("newDeviceName")+".csv", {
+        echo "var javascript_array = ".json_encode($js_array) . ";\n";
+        sqlsrv_free_stmt($stmt);
+    ?>;
+    var resultsCSV = [];
+    
+    Papa.parse("../upload/"+ window.localStorage.getItem("newDeviceName") +".csv", {
         download: true,
-        header: true,
+        header: false,
         skipEmptyLines: true,
         complete: function (results) {
-            console.log(results);
+        },
+        chunk : function(results, parser) {
+            results.data.shift();
+            results.data.shift();
+            var newDevName = window.localStorage.getItem("newDeviceName");
+            var oldDevName = window.localStorage.getItem("oldDeviceName");
+            resultsCSV.push(results.data);
+            compareResults(resultsCSV, javascript_array, newDevName, oldDevName);
         }
     });
+    console.log(javascript_array);
+    
     //window.localStorage.clear()
 </script>
